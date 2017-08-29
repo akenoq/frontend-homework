@@ -29,8 +29,14 @@ QUnit.module('Тестируем функцию inverse', function () {
 	QUnit.test('Функция не переставляет последние элементы массива', function (assert) {
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], 0), [5, 4, 3, 2, 1]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], -1), [4, 3, 2, 1, 5]);
-		assert.deepEqual(inverse([1, 2, 3, 4, 5], -2), [3, 2, 1, 5, 4]);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5], -2), [3, 2, 1, 4, 5]); // было [3, 2, 1, 5, 4] - противоречило условию
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], -5), [1, 2, 3, 4, 5]);
 		assert.deepEqual(inverse([1, 2, 3, 4, 5], -15), [1, 2, 3, 4, 5]);
+	});
+
+	QUnit.test('Новые тесты', function (assert) {
+	        assert.deepEqual(inverse(['a','b','c','d','e'], 2), ['a','b','e','d','c']);
+		assert.deepEqual(inverse(['a','b','c','d','e'], -3), ['b','a','c','d','e']);
+		assert.deepEqual(inverse([1, 2, 3, 4, 5, 6, 7, 8, 9 ], -4), [5, 4, 3, 2, 1, 6, 7, 8, 9]);
 	});
 });
