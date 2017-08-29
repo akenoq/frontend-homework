@@ -1,29 +1,20 @@
 // Куклина Нина 
-// Вариант 4
+// Вариант 4 // fix
 
 "use strict";
 
-function inverse() {
+function inverse(arr = [], n = 0) {
 
-    let arr = [];
-
-    for (let i = 0; i < arguments[0].length; i++) {
-        arr[i] = arguments[0][i];
-    } 
-
-    if (arguments.length === 1 || (arguments.length > 1 && !arguments[1])) {
+    if (!n) {
         return arr.reverse();
-    }
-
-    if (arguments.length > 1) {
-        const n = arguments[1];
+    } else {
         let arrBuf = arr.slice();	
         if (n > 0) {
-            arr = arr.slice(0,n); 
-            return arr.concat(arrBuf.slice(n,arrBuf.length).reverse());
+	    let arrReversePart = arr.splice(n,arr.length-n);
+            return arr.concat(arrReversePart.reverse());
         } else {
-            arr = arr.slice(n); 
-	    return arrBuf.slice(0, arrBuf.length+n).reverse().concat(arr);
+	    let arrReversePart = arr.splice(arr.length+n,-n);
+            return arr.reverse().concat(arrReversePart);
         }
     }
 
